@@ -13,17 +13,18 @@
     /// </summary>
     public class GridBoundary : IGridBoundary
     {
+        public int X { get; set; }
+        public int Y { get; set; }
+
         public GridBoundary(int x, int y)
         {
             X = x;
             Y = y;
         }
 
-        #region IGridBoundary Members
-
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        #endregion
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", X, Y);
+        }
     }
 }
