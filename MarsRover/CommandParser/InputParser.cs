@@ -101,7 +101,7 @@ namespace MarsRover
             int initialPositionY = Int32.Parse(position[1]);
             Orientations initialOrientation = (Orientations)Enum.Parse(typeof(Orientations), position[2]);
 
-            return new InitialPosition(new Position(initialPositionX, initialPositionY), initialOrientation);
+            return new InitialPosition(initialPositionX, initialPositionY, initialOrientation);
         }
     }
 }

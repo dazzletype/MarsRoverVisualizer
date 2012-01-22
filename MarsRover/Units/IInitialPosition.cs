@@ -1,13 +1,10 @@
 ﻿namespace MarsRover
 {
     /// <summary>
-    /// Strongly typed initial position object
+    /// Initial position of Rover plus orientation
     /// </summary>
-    public interface IInitialPosition
+    public interface IInitialPosition : IPosition
     {
-        IPosition Position { get; set; }
         Orientations Orientation { get; set; }
     }
-
-
 }

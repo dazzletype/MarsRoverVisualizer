@@ -5,12 +5,14 @@
     /// </summary>
     public class InitialPosition : IInitialPosition
     {
-        public IPosition Position { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
         public Orientations Orientation { get; set; }
 
-        public InitialPosition(Position position, Orientations orientation)
+        public InitialPosition(int x, int y, Orientations orientation)
         {
-            Position = position;
+            X = x;
+            Y = y;
             Orientation = orientation;
         }
 
@@ -20,7 +22,7 @@
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("{0} {1} {2}", Position.X, Position.Y, Orientation);
+            return string.Format("{0} {1} {2}", X, Y, Orientation);
         }
     }
 }

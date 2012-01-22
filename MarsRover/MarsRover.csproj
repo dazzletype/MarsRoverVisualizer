@@ -49,11 +49,9 @@
     <Compile Include="CommandParser\IRoverCommand.cs" />
     <Compile Include="Units\IGridBoundary.cs" />
     <Compile Include="Units\IInitialPosition.cs" />
-    <Compile Include="JSON\IMovementHistoryItem.cs" />
     <Compile Include="Units\InitialPosition.cs" />
     <Compile Include="Units\IPosition.cs" />
     <Compile Include="IRover.cs" />
-    <Compile Include="JSON\MovementHistoryItem.cs" />
     <Compile Include="Units\Orientations.cs" />
     <Compile Include="Units\GridBoundary.cs" />
     <Compile Include="Units\Position.cs" />

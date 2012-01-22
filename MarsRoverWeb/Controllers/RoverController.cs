@@ -58,7 +58,7 @@ namespace MarsRoverVisualizer.Controllers
 
             if (ModelState.IsValid)
             {
-                var data = new {rovers.First().RoverInitialPosition.Position.X, rovers.First().RoverInitialPosition.Position.Y, rovers.First().RoverInitialPosition.Orientation };        // hardcoded based on sample input for simplicity
+                var data = new {rovers.First().RoverInitialPosition.X, rovers.First().RoverInitialPosition.Y, rovers.First().RoverInitialPosition.Orientation };        // hardcoded based on sample input for simplicity
                 return Json(data);
             }
 

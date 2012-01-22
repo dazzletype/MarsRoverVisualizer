@@ -12,7 +12,7 @@ namespace MarsRover
         public IInitialPosition RoverInitialPosition { get; set; }
         public Orientations RoverOrientation { get; set; }
         public IGridBoundary GridBoundary { get; set; }
-        public IList<IMovementHistoryItem> MovementHistory { get; set; }
+        public IList<IInitialPosition> MovementHistory { get; set; }
         public string Command { get; set; }
 
 
@@ -26,10 +26,10 @@ namespace MarsRover
         {
             Command = command; 
             RoverInitialPosition = initialPosition;
-            RoverPosition = initialPosition.Position;
+            RoverPosition = initialPosition;
             RoverOrientation = initialPosition.Orientation;
             GridBoundary = gridBoundary;
-            MovementHistory = new List<IMovementHistoryItem>();
+            MovementHistory = new List<IInitialPosition>();
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace MarsRover
                         throw new ArgumentException(string.Format("Invalid value: {0}", command));
                 }
 
-                MovementHistory.Add(new MovementHistoryItem(RoverPosition.X, RoverPosition.Y, RoverOrientation.GetStringValue()));
+                MovementHistory.Add(new InitialPosition(RoverPosition.X, RoverPosition.Y, RoverOrientation));
             }
         }
 
