@@ -1,0 +1,99 @@
+﻿@{
+    ViewBag.Title = "Mars Rover Visualizer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script language="javascript" type="text/javascript">
+
+    // Draws a grid
+    function drawGrid(cols, rows, div) {
+        var tableMarkup = "";
+        for (x = cols; x >= 0; x--) {
+            tableMarkup += "<tr>";
+            for (y = 0; y <= rows; y++) {
+                tableMarkup += "<td id=" + x + "-" + y + ">" + x + "," + y + "</td>";
+            }
+            tableMarkup += "</tr>";
+        }
+        $(div).html(tableMarkup);
+    };
+</script>
+
+<h2 align="center">Mars Rover Visualizer</h2>
+
+<table id="terrainGrid" class="center"></table>
+<div id="rover"></div>
+<div id="commands" class="commandWindow"></div>
+
+<script language="javascript" type="text/javascript">
+
+    var movementHistory;
+    var terrainGrid = "#terrainGrid";
+    var baseUrl = '@Url.Content("~")';
+
+    $(terrainGrid).animate({
+        opacity: 1,
+        fontSize: "3em",
+        borderWidth: "5px"
+    }, 100);
+
+
+    // draw the terrain grid using the plateau coordinate service
+    $.post(baseUrl + "GetPlateauCoordinates", function (plateau) {
+        drawGrid(plateau.X, plateau.Y, terrainGrid);
+        $("#commands").append("Plateau: " + plateau.X + " " + plateau.Y + "<br/>");
+    });
+
+
+    // log rover's initial position
+    $.post(baseUrl + "GetInitialPosition", function (coordinates) {
+        $("#commands").append("Initial: " + coordinates.X + " " + coordinates.Y + " " + coordinates.Orientation + "<br/>");
+        $("#" + coordinates.X + "-" + coordinates.Y).addClass(GetRoverImage(coordinates.Orientation)); 
+    });
+
+
+    // get history from rover history service
+    $.post(baseUrl + "GetRoverHistory", function (movementHistoryData) {
+        $.each(movementHistoryData, function (index) {
+
+            var xCoordinate = movementHistoryData[index].X;
+            var yCoordinate = movementHistoryData[index].Y;
+            var orientation = movementHistoryData[index].Orientation;
+            var gridId = movementHistoryData[index].X + '-' + movementHistoryData[index].Y;
+
+            console.log(xCoordinate + ' ' + yCoordinate + ' ' + orientation);
+
+            setTimeout(function() { $("#" + gridId).addClass('footprint').animate({ opacity: 0.6 }) }, (index * 1000) / index); 
+            //$("#" + gridId).removeClass(GetRoverImage(orientation));
+
+
+            $("#commands").append(xCoordinate + ' ' + yCoordinate + ' ' + orientation + "<br/>");
+        });
+    });
+
+    function GetRoverImage(orientation) {
+        var roverImageClass;
+
+        switch (orientation) {
+            case "N":
+                roverImageClass = "roverNorth";
+                break;
+            case 'W':
+                roverImageClass = "roverWest";
+                break;
+            case 'S':
+                roverImageClass = "roverSouth";
+                break;
+            case 'E':
+                roverImageClass = "roverEast";
+                break;
+            default:
+                roverImageClass = "rover";
+        }
+        return roverImageClass;
+    }
+
+</script>
+
+
