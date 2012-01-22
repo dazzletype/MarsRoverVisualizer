@@ -4,7 +4,7 @@
     /// <summary>
     /// A class encapsulating set of commands per rover
     /// </summary>
-    public class RoverCommand : IRoverCommand
+    public class RoverCommand
     {
         public IVectorPosition InitialPosition { get; set; }
         public string Command { get; set; }

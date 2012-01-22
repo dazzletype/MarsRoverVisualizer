@@ -15,9 +15,9 @@ namespace MarsRoverTests
         private Mock<IVectorPosition> initialPosition;
         private string command;
 
-        private IRover roverOne;
-        private IRover roverTwo;
-        private IRover delinquentRover;
+        private Rover roverOne;
+        private Rover roverTwo;
+        private Rover delinquentRover;
 
        
         [TestInitialize]

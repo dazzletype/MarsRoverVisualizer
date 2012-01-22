@@ -6,7 +6,7 @@ namespace MarsRover
     /// <summary>
     /// Sends commands to the Rover for moving and orienting positions.
     /// </summary>
-    public class Rover : IRover
+    public class Rover
     {
         public IPosition RoverPosition { get; set; }
         public IVectorPosition RoverInitialPosition { get; set; }

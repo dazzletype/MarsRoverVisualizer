@@ -9,10 +9,10 @@ namespace MarsRover
     /// <summary>
     /// Reads a raw input information and parses them into strongly typed instruction objects
     /// </summary>
-    public class InputParser : IInputParser
+    public class InputParser
     {
         public IGridBoundary GridBoundary { get; set; }
-        public IList<IRoverCommand> RoverInstructions { get; set; }
+        public IList<RoverCommand> RoverInstructions { get; set; }
 
         private static readonly Regex BoundaryLineItemValidRegex = new Regex(@"^\d+\s\d+$");    // validates a boundary line item
         private static readonly Regex InitialCoordinatesValidRegex = new Regex(@"^\d+\s\d+\s[NSWE]$"); // validates an initial coordinate line item
@@ -21,7 +21,7 @@ namespace MarsRover
 
         public InputParser()
         {
-            RoverInstructions = new List<IRoverCommand>();
+            RoverInstructions = new List<RoverCommand>();
         }
 
 

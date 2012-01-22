@@ -45,13 +45,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommandParser\RoverCommand.cs" />
-    <Compile Include="CommandParser\IInputParser.cs" />
-    <Compile Include="CommandParser\IRoverCommand.cs" />
     <Compile Include="Units\IGridBoundary.cs" />
     <Compile Include="Units\IVectorPosition.cs" />
     <Compile Include="Units\VectorPosition.cs" />
     <Compile Include="Units\IPosition.cs" />
-    <Compile Include="IRover.cs" />
     <Compile Include="Units\Orientations.cs" />
     <Compile Include="Units\GridBoundary.cs" />
     <Compile Include="Units\Position.cs" />

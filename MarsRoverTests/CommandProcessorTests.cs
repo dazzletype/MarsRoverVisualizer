@@ -17,7 +17,7 @@ namespace MarsRoverTests
                                                  3 3 E
                                                  MMRMMRMRRM";
 
-        private IInputParser inputParser;
+        private InputParser inputParser;
 
         [TestInitialize]
         public void SetupProcessor()

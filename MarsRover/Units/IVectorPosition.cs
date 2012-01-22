@@ -1,7 +1,7 @@
 ﻿namespace MarsRover
 {
     /// <summary>
-    /// Initial position of Rover plus orientation
+    /// Vector position of Rover, including position and heading
     /// </summary>
     public interface IVectorPosition : IPosition
     {

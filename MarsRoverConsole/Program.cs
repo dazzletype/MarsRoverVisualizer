@@ -18,7 +18,7 @@ namespace MarsRoverConsole
 
         static void Main()
         {
-            IInputParser inputParser = new InputParser();
+            InputParser inputParser = new InputParser();
             IList<Rover> rovers = new List<Rover>();
             bool validInput;
 

@@ -1,7 +1,7 @@
 ﻿namespace MarsRover
 {
     /// <summary>
-    /// Interface to set the position of the Rover
+    /// Interface of a position unit. This interface should be used as a base class to be inherited by other units that utilize this structure.
     /// </summary>
     public interface IPosition
     {
