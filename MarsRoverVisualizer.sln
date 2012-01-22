@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverConsole", "MarsRoverConsole\MarsRoverConsole.csproj", "{26C367A4-5C38-41BF-8ED1-BBA84115E43D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverWeb", "MarsRoverWeb\MarsRoverWeb.csproj", "{5A6AAE84-E6C3-4743-9345-C930F0C12AE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRover", "MarsRover\MarsRover.csproj", "{CB373742-D088-4366-881E-C9CEA2F37480}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverConsole", "MarsRoverConsole\MarsRoverConsole.csproj", "{26C367A4-5C38-41BF-8ED1-BBA84115E43D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverTests", "MarsRoverTests\MarsRoverTests.csproj", "{38C0AED4-498A-4920-88F4-BA32EDBE4E7A}"
 EndProject
