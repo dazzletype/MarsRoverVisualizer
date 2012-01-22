@@ -1,12 +1,10 @@
 ﻿namespace MarsRover
 {
     /// <summary>
-    /// A history item of a rover movement
+    /// A history item of a rover movement including positon and heading
     /// </summary>
-    public interface IMovementHistoryItem
+    public interface IMovementHistoryItem : IPosition
     {
-        int X { get; set; }
-        int Y { get; set; }
         string Orientation { get; set; }
     }
 }

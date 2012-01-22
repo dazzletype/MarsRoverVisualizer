@@ -85,9 +85,7 @@ namespace MarsRover
         private GridBoundary ParseBoundary(string boundaryCoordinates)
         {
             String[] coordinates = boundaryCoordinates.Split(' ');
-            Position boundaryPosition = new Position(Int32.Parse(coordinates[0]), Int32.Parse(coordinates[1]));
-
-            return new GridBoundary(boundaryPosition);
+            return new GridBoundary(Int32.Parse(coordinates[0]), Int32.Parse(coordinates[1]));
         }
 
         /// <summary>

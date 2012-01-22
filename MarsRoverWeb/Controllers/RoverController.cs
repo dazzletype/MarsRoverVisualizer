@@ -40,7 +40,7 @@ namespace MarsRoverVisualizer.Controllers
 
             if (ModelState.IsValid)
             {
-                var data = new { gridBoundary.GridBoundaryPosition.X, gridBoundary.GridBoundaryPosition.Y };        // hardcoded based on sample input for simplicity
+                var data = new { gridBoundary.X, gridBoundary.Y };        // hardcoded based on sample input for simplicity
                 return Json(data);
             }
 

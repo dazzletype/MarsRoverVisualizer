@@ -1,7 +1,7 @@
 ﻿namespace MarsRover
 {
     /// <summary>
-    /// Establishes the plateau/grid size by providing a boundary coordinate originating from the lower left corner.
+    /// Position that determines plateau/grid size by providing a boundary coordinate originating from the lower left corner.
     /// For example, a boundary position of 1,2 results in the following grid:
     /// -------------
     /// |     |(1,2)|  
@@ -13,20 +13,17 @@
     /// </summary>
     public class GridBoundary : IGridBoundary
     {
-        public Position GridBoundaryPosition { get; private set;}
-
-        public GridBoundary(Position position)
+        public GridBoundary(int x, int y)
         {
-            GridBoundaryPosition = position;
+            X = x;
+            Y = y;
         }
 
-        /// <summary>
-        /// Prints out the grid boundary as a string
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("{0} {1}", GridBoundaryPosition.X, GridBoundaryPosition.Y);
-        }
+        #region IGridBoundary Members
+
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        #endregion
     }
 }

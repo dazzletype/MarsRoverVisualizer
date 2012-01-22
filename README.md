@@ -2,7 +2,7 @@ Mars Rover Visualizer
 ==================
 
 ## Description
-A .net implementation of the classic Mars Rover problem. Also includes a visualizer that's in progress.
+A .net implementation of the classic Mars Rover problem. 
 
 
 ## Code Demonstrates:
@@ -16,7 +16,8 @@ Demonstrates the basic logic of the application in C# and writes the output to t
 
 
 ## Web Version
-Uses the Rover libraries to visually demonstrate the rover's movements and orientation, via jQuery and ASP.MVC. Work in progress.
+In progress. Uses the Rover libraries to visually demonstrate the rover's movements and orientation, via jQuery and ASP.MVC. 
+
   ![Mars Rover Visualizer screenshot](http://i.imgur.com/ltWzH.jpg) 
 
  

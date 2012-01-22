@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace MarsRover
 {
     /// <summary>
@@ -16,6 +15,13 @@ namespace MarsRover
         public IList<IMovementHistoryItem> MovementHistory { get; set; }
         public string Command { get; set; }
 
+
+        /// <summary>
+        /// Create a new rover and set its instructions
+        /// </summary>
+        /// <param name="initialPosition">Rover's initial position</param>
+        /// <param name="command">Rover's movement commands</param>
+        /// <param name="gridBoundary">Position to limit of rover's movement to</param>
         public Rover(IInitialPosition initialPosition, string command, IGridBoundary gridBoundary)
         {
             Command = command; 
@@ -60,8 +66,7 @@ namespace MarsRover
         {
             get
             {
-                bool isInsideBoundaries = RoverPosition.X > GridBoundary.GridBoundaryPosition.X ||
-                                          RoverPosition.Y > GridBoundary.GridBoundaryPosition.Y;
+                bool isInsideBoundaries = RoverPosition.X > GridBoundary.X || RoverPosition.Y > GridBoundary.Y;
                 return isInsideBoundaries;
             }
         }
@@ -97,7 +102,7 @@ namespace MarsRover
             else if (RoverOrientation == Orientations.W)
                 RoverPosition.X--;
 
-            if(RoverPosition.X > GridBoundary.GridBoundaryPosition.X || RoverPosition.Y > GridBoundary.GridBoundaryPosition.Y)
+            if(RoverPosition.X > GridBoundary.X || RoverPosition.Y > GridBoundary.Y)
                 throw new IndexOutOfRangeException("Rover has gone past the boundaries and into space");
 
             if (RoverPosition.X < 0 || RoverPosition.Y < 0)
@@ -114,7 +119,7 @@ namespace MarsRover
             string printedRoverPosition = string.Format("{0} {1} {2}", RoverPosition.X, RoverPosition.Y, RoverOrientation.GetStringValue());
             
             if (IsRobotInsideBoundaries)
-                printedRoverPosition = string.Format("Rover outside the boundary, Rover position: {0} , boundary limit {1}", printedRoverPosition, GridBoundary.GridBoundaryPosition);
+                printedRoverPosition = string.Format("Rover outside the boundary, Rover position: {0} , boundary limit {1}", printedRoverPosition, GridBoundary);
 
             return printedRoverPosition;
         }

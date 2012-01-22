@@ -1,11 +1,9 @@
 ﻿namespace MarsRover
 {
     /// <summary>
-    /// Interface to specify the grid boundary position
+    /// Grid boundary position (inherited from Position)
     /// </summary>
-    public interface IGridBoundary
+    public interface IGridBoundary : IPosition
     {
-        Position GridBoundaryPosition { get; }
-        string ToString();
     }
 }

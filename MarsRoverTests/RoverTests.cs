@@ -30,7 +30,7 @@ namespace MarsRoverTests
 
         public void SetupRoverOne()
         {
-            boundary.Setup(b => b.GridBoundaryPosition).Returns(new Position(5, 5));
+            boundary.Setup(b => b).Returns(new GridBoundary(5, 5));
             
             initialPosition.SetupProperty(i => i.Position.X, 1);
             initialPosition.SetupProperty(i => i.Position.Y, 2);
@@ -44,7 +44,7 @@ namespace MarsRoverTests
 
         public void SetupRoverTwo()
         {
-            boundary.Setup(b => b.GridBoundaryPosition).Returns(new Position(5, 5));
+            boundary.Setup(b => b).Returns(new GridBoundary(5, 5));
 
             initialPosition.SetupProperty(i => i.Position.X, 3);
             initialPosition.SetupProperty(i => i.Position.Y, 3);
@@ -82,7 +82,7 @@ namespace MarsRoverTests
         public void RoverExceedingBoundaryOriginShouldThrowException()
         {
             // setup a tight boundary
-            boundary.Setup(b => b.GridBoundaryPosition).Returns(new Position(1, 1));
+            boundary.Setup(b => b).Returns(new GridBoundary(1, 1));
 
             initialPosition.SetupProperty(i => i.Position.X, 0);
             initialPosition.SetupProperty(i => i.Position.Y, 0);
@@ -100,7 +100,7 @@ namespace MarsRoverTests
         public void RoverExceedingBoundaryLimitShouldThrowException()
         {
             // setup a tight boundary
-            boundary.Setup(b => b.GridBoundaryPosition).Returns(new Position(1, 1));
+            boundary.Setup(b => b).Returns(new GridBoundary(1, 1));
 
             initialPosition.SetupProperty(i => i.Position.X, 0);
             initialPosition.SetupProperty(i => i.Position.Y, 0);

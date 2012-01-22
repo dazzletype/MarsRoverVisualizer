@@ -1,7 +1,7 @@
 ﻿namespace MarsRover
 {
    /// <summary>
-   /// Position of the Rover
+   /// Base class to provide position coordinates
    /// </summary>
     public class Position : IPosition
     {
