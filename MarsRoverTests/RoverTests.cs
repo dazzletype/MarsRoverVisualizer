@@ -12,7 +12,7 @@ namespace MarsRoverTests
     public class RoverTests
     {
         private Mock<IGridBoundary> boundary;
-        private Mock<IInitialPosition> initialPosition;
+        private Mock<IVectorPosition> initialPosition;
         private string command;
 
         private IRover roverOne;
@@ -24,7 +24,7 @@ namespace MarsRoverTests
         public void Setup()
         {
             boundary = new Mock<IGridBoundary>();
-            initialPosition = new Mock<IInitialPosition>();
+            initialPosition = new Mock<IVectorPosition>();
             command = String.Empty;
         }
 

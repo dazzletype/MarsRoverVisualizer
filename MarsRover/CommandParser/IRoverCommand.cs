@@ -7,7 +7,7 @@ namespace MarsRover
 {
     public interface IRoverCommand
     {
-        IInitialPosition InitialPosition { get; set; }
+        IVectorPosition InitialPosition { get; set; }
         string Command { get; set; }
     }
 

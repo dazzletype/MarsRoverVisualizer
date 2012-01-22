@@ -3,7 +3,7 @@
     /// <summary>
     /// Initial position of Rover plus orientation
     /// </summary>
-    public interface IInitialPosition : IPosition
+    public interface IVectorPosition : IPosition
     {
         Orientations Orientation { get; set; }
     }

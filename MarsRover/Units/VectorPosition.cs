@@ -1,15 +1,15 @@
 ﻿namespace MarsRover
 {
     /// <summary>
-    /// Strongly typed object to represent the initial position of rover (coordinates and orientation)
+    /// A vector contains a position value and direction
     /// </summary>
-    public class InitialPosition : IInitialPosition
+    public class VectorPosition : IVectorPosition
     {
         public int X { get; set; }
         public int Y { get; set; }
         public Orientations Orientation { get; set; }
 
-        public InitialPosition(int x, int y, Orientations orientation)
+        public VectorPosition(int x, int y, Orientations orientation)
         {
             X = x;
             Y = y;

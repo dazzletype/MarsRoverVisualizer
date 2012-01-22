@@ -6,10 +6,10 @@
     /// </summary>
     public class RoverCommand : IRoverCommand
     {
-        public IInitialPosition InitialPosition { get; set; }
+        public IVectorPosition InitialPosition { get; set; }
         public string Command { get; set; }
 
-        public RoverCommand(IInitialPosition initialPosition, string commands)
+        public RoverCommand(IVectorPosition initialPosition, string commands)
         {
             InitialPosition = initialPosition;
             Command = commands;

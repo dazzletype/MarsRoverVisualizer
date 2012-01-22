@@ -39,7 +39,7 @@ namespace MarsRover
             using (StringReader reader = new StringReader(input))
             {
                 string currentLine;
-                IInitialPosition roverInitialPosition = null;
+                IVectorPosition roverInitialPosition = null;
                 string roverCommands = String.Empty;
                 int lineCounter = 0;
                 
@@ -93,7 +93,7 @@ namespace MarsRover
         /// </summary>
         /// <param name="initialPosition"></param>
         /// <returns></returns>
-        private InitialPosition ParseInitialPosition(string initialPosition)
+        private VectorPosition ParseInitialPosition(string initialPosition)
         {
             String[] position = initialPosition.Split(' ');
 
@@ -101,7 +101,7 @@ namespace MarsRover
             int initialPositionY = Int32.Parse(position[1]);
             Orientations initialOrientation = (Orientations)Enum.Parse(typeof(Orientations), position[2]);
 
-            return new InitialPosition(initialPositionX, initialPositionY, initialOrientation);
+            return new VectorPosition(initialPositionX, initialPositionY, initialOrientation);
         }
     }
 }

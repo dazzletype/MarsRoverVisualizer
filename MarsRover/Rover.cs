@@ -9,10 +9,10 @@ namespace MarsRover
     public class Rover : IRover
     {
         public IPosition RoverPosition { get; set; }
-        public IInitialPosition RoverInitialPosition { get; set; }
+        public IVectorPosition RoverInitialPosition { get; set; }
         public Orientations RoverOrientation { get; set; }
         public IGridBoundary GridBoundary { get; set; }
-        public IList<IInitialPosition> MovementHistory { get; set; }
+        public IList<IVectorPosition> MovementHistory { get; set; }
         public string Command { get; set; }
 
 
@@ -22,14 +22,14 @@ namespace MarsRover
         /// <param name="initialPosition">Rover's initial position</param>
         /// <param name="command">Rover's movement commands</param>
         /// <param name="gridBoundary">Position to limit of rover's movement to</param>
-        public Rover(IInitialPosition initialPosition, string command, IGridBoundary gridBoundary)
+        public Rover(IVectorPosition initialPosition, string command, IGridBoundary gridBoundary)
         {
             Command = command; 
             RoverInitialPosition = initialPosition;
             RoverPosition = initialPosition;
             RoverOrientation = initialPosition.Orientation;
             GridBoundary = gridBoundary;
-            MovementHistory = new List<IInitialPosition>();
+            MovementHistory = new List<IVectorPosition>();
         }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace MarsRover
                         throw new ArgumentException(string.Format("Invalid value: {0}", command));
                 }
 
-                MovementHistory.Add(new InitialPosition(RoverPosition.X, RoverPosition.Y, RoverOrientation));
+                MovementHistory.Add(new VectorPosition(RoverPosition.X, RoverPosition.Y, RoverOrientation));
             }
         }
 
