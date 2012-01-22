@@ -20,7 +20,7 @@ namespace MarsRoverVisualizer.Controllers
                                        3 3 E
                                        MMRMMRMRRM";
 
-        private ICommandProcessor commandProcessor = new CommandProcessor();
+        private IInputParser commandProcessor = new InputParser();
         private IList<Rover> rovers = new List<Rover>();
 
         public ActionResult Index()
