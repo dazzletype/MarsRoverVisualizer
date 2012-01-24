@@ -12,10 +12,10 @@ namespace MarsRoverTests
     {
 
         private const string SampleValidInput = @"5 5
-                                                 1 2 N
-                                                 LMLMLMLMM
-                                                 3 3 E
-                                                 MMRMMRMRRM";
+                                                  1 2 N
+                                                  LMLMLMLMM
+                                                  3 3 E
+                                                  MMRMMRMRRM";
 
         private InputParser inputParser;
 

@@ -19,11 +19,27 @@
         $(div).html(tableMarkup);
     };
 </script>
+	<div id="marsSurface" class="marsSurface"></div>
+
+
+
+<!-- ************************** -->
+	<!-- START OF EXPERIMENT -->
+	<!-- ************************** -->
+
+	<div id="experiment">
+		<div id="background"></div>	
+	</div>	
+
+<!-- ************************** -->
+	<!-- END OF EXPERIMENT -->
+	<!-- ************************** -->
 
 <h2 align="center">Mars Rover Visualizer</h2>
 
+@*<div id="rover" class="roverAnimated"></div>
+*@
 <table id="terrainGrid" class="center"></table>
-<div id="rover"></div>
 <div id="commands" class="commandWindow"></div>
 
 <script language="javascript" type="text/javascript">
@@ -48,9 +64,22 @@
 
     // log rover's initial position
     $.post(baseUrl + "GetInitialPosition", function (coordinates) {
-        $("#commands").append("Initial: " + coordinates.X + " " + coordinates.Y + " " + coordinates.Orientation + "<br/>");
-        $("#" + coordinates.X + "-" + coordinates.Y).addClass(GetRoverImage(coordinates.Orientation)); 
+        $("#commands").append("Initial: " + coordinates.X + " " + coordinates.Y + " " + ConvertOrientation(coordinates.Orientation) + "<br/>");
+        $("#" + coordinates.X + "-" + coordinates.Y).addClass(GetRoverImage(coordinates.Orientation));
     });
+
+   
+
+    var movementHistoryData = [{ "X": 1, "Y": 2, "Orientation": 4 }, { "X": 0, "Y": 2, "Orientation": 4 }, { "X": 0, "Y": 2, "Orientation": 3 }, { "X": 0, "Y": 1, "Orientation": 3 }, { "X": 0, "Y": 1, "Orientation": 2 }, { "X": 1, "Y": 1, "Orientation": 2 }, { "X": 1, "Y": 1, "Orientation": 1 }, { "X": 1, "Y": 2, "Orientation": 1 }, { "X": 1, "Y": 3, "Orientation": 1 }];
+
+
+    $("#1-2").addClass(GetRoverImage(4));
+   
+
+    //drawGrid(5, 5, terrainGrid);
+    $("#0-3").addClass(GetRoverImage(3));
+    $("#0-3").removeClass(GetRoverImage(3));
+
 
 
     // get history from rover history service
@@ -59,40 +88,79 @@
 
             var xCoordinate = movementHistoryData[index].X;
             var yCoordinate = movementHistoryData[index].Y;
-            var orientation = movementHistoryData[index].Orientation;
-            var gridId = movementHistoryData[index].X + '-' + movementHistoryData[index].Y;
+            var orientation = ConvertOrientation(movementHistoryData[index].Orientation);
+            var gridId = "#" + movementHistoryData[index].X + '-' + movementHistoryData[index].Y;
 
             console.log(xCoordinate + ' ' + yCoordinate + ' ' + orientation);
 
-            setTimeout(function() { $("#" + gridId).addClass('footprint').animate({ opacity: 0.6 }) }, (index * 1000) / index); 
-            //$("#" + gridId).removeClass(GetRoverImage(orientation));
 
 
-            $("#commands").append(xCoordinate + ' ' + yCoordinate + ' ' + orientation + "<br/>");
+            $(document).ready(function () {
+            //$(gridId).addClass("roverAnimated");
+            //   drawGrid(5, 5, terrainGrid);
+           // $(gridId).delay(index * 100).addClass(GetRoverImage(movementHistoryData[index].Orientation));
+
+
+
+
+
+            });
+
+
+
+
+
+
+
+
+            $("#commands").delay(index * 1000).append(xCoordinate + ' ' + yCoordinate + ' ' + orientation + "<br/>").animate(
+                        { opacity: '0.8' },
+                        { queue: true, duration: 1000, specialEasing: { top: 'easeOutBack' }
+                        });
+
+            //$("#commands").append(xCoordinate + ' ' + yCoordinate + ' ' + orientation + "<br/>").delay(1000);
+
+
+
         });
     });
 
-    function GetRoverImage(orientation) {
-        var roverImageClass;
 
+
+
+    function GetRoverImage(orientation) {
         switch (orientation) {
-            case "N":
-                roverImageClass = "roverNorth";
-                break;
-            case 'W':
-                roverImageClass = "roverWest";
-                break;
-            case 'S':
-                roverImageClass = "roverSouth";
-                break;
-            case 'E':
-                roverImageClass = "roverEast";
-                break;
+            case 1:
+                return "roverAnimateNorth";
+            case 2:
+                return "roverAnimateEast";
+            case 3:
+                return "roverAnimateSouth";
+            case 4:
+                return "roverAnimateWest";
             default:
-                roverImageClass = "rover";
+                return  "rover";
         }
-        return roverImageClass;
     }
+    
+
+    function ConvertOrientation(orientation) {
+        switch (orientation) {
+            case 1:
+                return "N";
+            case 2:
+                return "E";
+            case 3:
+                return "S";
+            case 4:
+                return "W";
+            default:
+                return null;
+        }
+    }
+    
+    
+
 
 </script>
 

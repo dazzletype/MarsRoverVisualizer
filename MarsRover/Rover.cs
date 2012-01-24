@@ -5,6 +5,7 @@ namespace MarsRover
 {
     /// <summary>
     /// Sends commands to the Rover for moving and orienting positions.
+    /// Certain logic inspired by following implementation: http://george2giga.com/2011/02/18/mars-rover-exercise-in-c/
     /// </summary>
     public class Rover
     {
@@ -51,23 +52,9 @@ namespace MarsRover
                         Move();
                         break;
                     default:
-                        throw new ArgumentException(string.Format("Invalid value: {0}", command));
+                        throw new ArgumentException(string.Format("Error: '{0}' is not a valid rover command", command));
                 }
-
-                MovementHistory.Add(new VectorPosition(RoverPosition.X, RoverPosition.Y, RoverOrientation));
-            }
-        }
-
-        /// <summary>
-        /// Check if Rover is within the boundaries
-        /// </summary>
-        /// <returns><code>true</code> if Rover is within boundaries</returns>
-        public bool IsRobotInsideBoundaries
-        {
-            get
-            {
-                bool isInsideBoundaries = RoverPosition.X > GridBoundary.X || RoverPosition.Y > GridBoundary.Y;
-                return isInsideBoundaries;
+                MovementHistory.Add(new VectorPosition(RoverPosition.X, RoverPosition.Y, (Orientations)Enum.Parse(typeof(Orientations), RoverOrientation.ToString())));
             }
         }
 
@@ -93,35 +80,40 @@ namespace MarsRover
         /// </summary>
         private void Move()
         {
-            if (RoverOrientation == Orientations.N)
-                RoverPosition.Y++;
-            else if (RoverOrientation == Orientations.E)
-                RoverPosition.X++;
-            else if (RoverOrientation == Orientations.S)
-                RoverPosition.Y--;
-            else if (RoverOrientation == Orientations.W)
-                RoverPosition.X--;
+            switch (RoverOrientation)
+            {
+                case Orientations.N:
+                    RoverPosition.Y++;
+                    break;
+
+                case Orientations.E:
+                    RoverPosition.X++;
+                    break;
+
+                case Orientations.S:
+                    RoverPosition.Y--;
+                    break;
+                    
+                case Orientations.W:
+                    RoverPosition.X--;
+                    break;
+            }
 
             if(RoverPosition.X > GridBoundary.X || RoverPosition.Y > GridBoundary.Y)
-                throw new IndexOutOfRangeException("Rover has gone past the boundaries and into space");
+                throw new IndexOutOfRangeException("Error: Rover has gone past the boundaries and into space");
 
             if (RoverPosition.X < 0 || RoverPosition.Y < 0)
-                throw new IndexOutOfRangeException("Rover has gone past the boundaries into the negative world");
+                throw new IndexOutOfRangeException("Error: Rover has gone past the boundaries into the negative world");
         }
 
 
         /// <summary>
-        /// Print out the rover position
+        /// Print out the rover's final position
         /// </summary>
         /// <returns></returns>
         public override string ToString()
         {
-            string printedRoverPosition = string.Format("{0} {1} {2}", RoverPosition.X, RoverPosition.Y, RoverOrientation.GetStringValue());
-            
-            if (IsRobotInsideBoundaries)
-                printedRoverPosition = string.Format("Rover outside the boundary, Rover position: {0} , boundary limit {1}", printedRoverPosition, GridBoundary);
-
-            return printedRoverPosition;
+            return string.Format("{0} {1} {2}", RoverPosition.X, RoverPosition.Y, RoverOrientation.GetStringValue());
         }
       
     }

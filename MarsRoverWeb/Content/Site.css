@@ -9,7 +9,6 @@ body
 
 
 
-
 h1 { font: bold 32px Helvetica, Arial, Sans-Serif; letter-spacing: -1px; margin: 0 0 5px 0; }
 #page-wrap > p { margin: 0 0 10px 0; }
 
@@ -24,7 +23,7 @@ table{
     border-collapse:collapse;
     border:1px solid #888888;
     text-align: center;
-
+    margin-top: 200px;
 }
 
 table td{
@@ -52,11 +51,206 @@ table td{
 }
 
 
+
+
+.marsSurface {  background-image:     url('/content/images/marssurface.jpg');}
+
+
 .footprint { background-color: #F1F1F1; }
 
-.rover {  background-image: url('/content/images/rover.png');}
+.rover {  background-image:     url('/content/images/rover.png');}
 
 .roverEast {  background-image: url('/content/images/roverEast.png');}
 .roverWest {  background-image: url('/content/images/roverWest.png');}
 .roverNorth {  background-image: url('/content/images/roverNorth.png');}
 .roverSouth {  background-image: url('/content/images/roverSouth.png');}
+
+
+.roverAnimated
+{
+    background-image:     url('/content/images/rover.png');
+    width:100px;
+    height:100px;
+    position:relative;
+    animation-name:myfirst;
+    animation-duration:5s;
+    animation-timing-function:linear;
+    animation-delay:2s;
+    animation-iteration-count:infinite;
+    animation-direction:alternate;
+    animation-play-state:running;
+    /* Firefox: */
+    -moz-animation-name:myfirst;
+    -moz-animation-duration:5s;
+    -moz-animation-timing-function:linear;
+    -moz-animation-delay:2s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-direction:alternate;
+    -moz-animation-play-state:running;
+ 
+     /* Safari and Chrome: */
+    -webkit-animation-name:myfirst;
+    -webkit-animation-duration:1s;
+    -webkit-animation-timing-function:linear;
+    -webkit-animation-delay:2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-play-state:running;
+}
+
+@keyframes myfirst
+{
+0%   {left:0px; top:0px;}
+25%  {left:100px; top:0px;}
+50%  {left:100px; top:100px;}
+75%  {left:1px; top:100px;}
+100% {left:1px; top:0px;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+0%   {left:0px; top:0px;}
+25%  {left:100px; top:0px;}
+50%  {left:100px; top:100px;}
+75%  {left:1px; top:100px;}
+100% {left:1px; top:0px;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {left:0px; top:0px;}
+100% {left:100px; top:0px;}
+}
+
+
+
+/* Orientation animations */
+
+.roverAnimateNorth
+{
+    background-image:     url('/content/images/roverNorth.png');
+    width:100px;
+    height:100px;
+    position:relative;
+    
+
+     /* Safari and Chrome: */
+    -webkit-animation-name:roverNorth;
+    -webkit-animation-duration:1s;
+    -webkit-animation-delay:2s;
+    -webkit-animation-iteration-count:1;
+    -webkit-animation-direction:normal;
+    -webkit-animation-play-state:running;
+}
+
+
+@-webkit-keyframes roverNorth /* Safari and Chrome */
+{
+0%   {left:0px; top:0px;}
+100% {left:0px; top:-100px;}
+}
+
+.roverAnimateSouth
+{
+    background-image:     url('/content/images/roverSouth.png');
+    width:100px;
+    height:100px;
+    position:relative;
+    
+
+     /* Safari and Chrome: */
+    -webkit-animation-name:roverSouth;
+    -webkit-animation-duration:1s;
+    -webkit-animation-timing-function:linear;
+    -webkit-animation-delay:2s;
+    -webkit-animation-iteration-count:1;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-play-state:running;
+}
+
+
+@-webkit-keyframes roverSouth /* Safari and Chrome */
+{
+0%   {left:0px; top:0px;}
+100% {left:0px; top:100px;}
+}
+
+.roverAnimateWest
+{
+    background-image:     url('/content/images/roverWest.png');
+    width:100px;
+    height:100px;
+    position:relative;
+    
+
+     /* Safari and Chrome: */
+    -webkit-animation-name:roverWest;
+    -webkit-animation-duration:1s;
+    -webkit-animation-timing-function:linear;
+    -webkit-animation-delay:2s;
+    -webkit-animation-iteration-count:1;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-play-state:running;
+}
+
+
+@-webkit-keyframes roverWest /* Safari and Chrome */
+{
+0%   {left:0px; top:0px;}
+100% {left:-100px; top:0px;}
+}
+
+.roverAnimateEast
+{
+    background-image:     url('/content/images/roverEast.png');
+    width:100px;
+    height:100px;
+    position:relative;
+    
+
+     /* Safari and Chrome: */
+    -webkit-animation-name:roverEast;
+    -webkit-animation-duration:1s;
+    -webkit-animation-timing-function:linear;
+    -webkit-animation-delay:2s;
+    -webkit-animation-iteration-count:1;
+    -webkit-animation-direction:alternate;
+    -webkit-animation-play-state:running;
+}
+
+
+@-webkit-keyframes roverEast /* Safari and Chrome */
+{
+0%   {left:0px; top:0px;}
+100% {left: 100px; top:0px;}
+
+/* End rover animations */
+
+
+/* 
+Parallax Experiment
+Date: 2nd April 2009
+Author: Paul Hayes
+*/
+
+#background {
+background: url('/content/images/foreground.png') 10% 10%, url('/content/images/midground.png') 20% 20%, url('/content/images/background.png') 20% 50%;
+top: 0px;
+left: 0;
+right: 0;
+bottom: 800px;
+position: fixed;
+-webkit-transition: left 300s linear;
+}
+
+
+
+#experiment:target #background {
+left: -9999px;
+}
+
+#experiment:hover #background {
+left: -5000px;
+}
+
+

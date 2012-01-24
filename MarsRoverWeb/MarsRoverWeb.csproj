@@ -71,7 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\drawingtable.js" />
+    <Content Include="Content\images\background.png" />
+    <Content Include="Content\images\foreground.png" />
     <Content Include="Content\images\marssurface.jpg" />
+    <Content Include="Content\images\midground.png" />
     <Content Include="Content\images\rover.png" />
     <Content Include="Content\images\roverEast.png" />
     <Content Include="Content\images\roverNorth.png" />
@@ -106,9 +109,11 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\CSSAnimationforjQuery.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery.animate-enhanced.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />

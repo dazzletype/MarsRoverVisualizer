@@ -7,22 +7,26 @@ using MarsRover.CommandProcessing;
 namespace MarsRover
 {
     /// <summary>
-    /// Reads a raw input information and parses them into strongly typed instruction objects
+    /// Reads raw input information and parses them into a Boundary (grid size) and Rover command objects
     /// </summary>
     public class InputParser
     {
-        public IGridBoundary GridBoundary { get; set; }
-        public IList<RoverCommand> RoverInstructions { get; set; }
+        private static readonly Regex BoundaryLineItemValidRegex = new Regex(@"^\d+\s\d+$");
+                                      // validates a boundary line item
 
-        private static readonly Regex BoundaryLineItemValidRegex = new Regex(@"^\d+\s\d+$");    // validates a boundary line item
-        private static readonly Regex InitialCoordinatesValidRegex = new Regex(@"^\d+\s\d+\s[NSWE]$"); // validates an initial coordinate line item
-        private static readonly Regex CommandValidRegex  = new Regex(@"^[LRM]+$"); // validates a command line item
+        private static readonly Regex InitialCoordinatesRowValidRegex = new Regex(@"^\d+\s\d+\s[NSWE]$");
+                                      // validates an initial coordinate line item
+
+        private static readonly Regex CommandRowValidRegex = new Regex(@"^[LRM]+$"); // validates a command line item
 
 
         public InputParser()
         {
             RoverInstructions = new List<RoverCommand>();
         }
+
+        public IGridBoundary GridBoundary { get; set; }
+        public IList<RoverCommand> RoverInstructions { get; set; }
 
 
         /// <summary>
@@ -32,17 +36,16 @@ namespace MarsRover
         /// <returns></returns>
         public bool ReadInput(string input)
         {
-
             if (input.Length == 0)
                 return false;
-            
-            using (StringReader reader = new StringReader(input))
+
+            using (var reader = new StringReader(input))
             {
                 string currentLine;
                 IVectorPosition roverInitialPosition = null;
                 string roverCommands = String.Empty;
                 int lineCounter = 0;
-                
+
                 while ((currentLine = reader.ReadLine()) != null)
                 {
                     lineCounter++;
@@ -54,9 +57,9 @@ namespace MarsRover
                     // determine what information the line contains
                     if (BoundaryLineItemValidRegex.Match(currentLine).Success)
                         GridBoundary = ParseBoundary(currentLine); // establish grid boundary
-                    else if (InitialCoordinatesValidRegex.Match(currentLine).Success)
-                        roverInitialPosition = ParseInitialPosition(currentLine);   // establish initial position
-                    else if (CommandValidRegex.Match(currentLine).Success)
+                    else if (InitialCoordinatesRowValidRegex.Match(currentLine).Success)
+                        roverInitialPosition = ParseInitialPosition(currentLine); // establish initial position
+                    else if (CommandRowValidRegex.Match(currentLine).Success)
                         roverCommands = currentLine; // get rover commands
                     else
                         throw new Exception(String.Format("Line {0} in input contains invalid information", lineCounter));
@@ -68,8 +71,6 @@ namespace MarsRover
                         roverInitialPosition = null;
                         roverCommands = String.Empty;
                     }
-
-
                 }
             }
 
@@ -99,7 +100,7 @@ namespace MarsRover
 
             int initialPositionX = Int32.Parse(position[0]);
             int initialPositionY = Int32.Parse(position[1]);
-            Orientations initialOrientation = (Orientations)Enum.Parse(typeof(Orientations), position[2]);
+            var initialOrientation = (Orientations) Enum.Parse(typeof (Orientations), position[2]);
 
             return new VectorPosition(initialPositionX, initialPositionY, initialOrientation);
         }
