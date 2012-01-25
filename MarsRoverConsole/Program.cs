@@ -20,18 +20,18 @@ namespace MarsRoverConsole
         {
             InputParser inputParser = new InputParser();
             IList<Rover> rovers = new List<Rover>();
-            bool validInput;
+            bool isValidInput;
 
             // read input
-            validInput = inputParser.ReadInput(SampleInput);
+            isValidInput = inputParser.ReadInput(SampleInput);
 
-            if(!validInput)
+            if(!isValidInput)
             {
                 Console.WriteLine("Invalid input data");
                 return;
             }
 
-            // establish grid boundary
+            // get grid boundary coordinates from the input
             IGridBoundary gridBoundary = inputParser.GridBoundary;
             Console.WriteLine(gridBoundary);
 

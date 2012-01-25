@@ -65,7 +65,7 @@
     // log rover's initial position
     $.post(baseUrl + "GetInitialPosition", function (coordinates) {
         $("#commands").append("Initial: " + coordinates.X + " " + coordinates.Y + " " + ConvertOrientation(coordinates.Orientation) + "<br/>");
-        $("#" + coordinates.X + "-" + coordinates.Y).addClass(GetRoverImage(coordinates.Orientation));
+        //$("#" + coordinates.X + "-" + coordinates.Y).addClass(GetRoverImage(coordinates.Orientation));
     });
 
    
@@ -73,12 +73,7 @@
     var movementHistoryData = [{ "X": 1, "Y": 2, "Orientation": 4 }, { "X": 0, "Y": 2, "Orientation": 4 }, { "X": 0, "Y": 2, "Orientation": 3 }, { "X": 0, "Y": 1, "Orientation": 3 }, { "X": 0, "Y": 1, "Orientation": 2 }, { "X": 1, "Y": 1, "Orientation": 2 }, { "X": 1, "Y": 1, "Orientation": 1 }, { "X": 1, "Y": 2, "Orientation": 1 }, { "X": 1, "Y": 3, "Orientation": 1 }];
 
 
-    $("#1-2").addClass(GetRoverImage(4));
-   
-
     //drawGrid(5, 5, terrainGrid);
-    $("#0-3").addClass(GetRoverImage(3));
-    $("#0-3").removeClass(GetRoverImage(3));
 
 
 
@@ -96,14 +91,9 @@
 
 
             $(document).ready(function () {
-            //$(gridId).addClass("roverAnimated");
-            //   drawGrid(5, 5, terrainGrid);
-           // $(gridId).delay(index * 100).addClass(GetRoverImage(movementHistoryData[index].Orientation));
-
-
-
-
-
+                $(gridId).addClass(GetRoverImage(movementHistoryData[index].Orientation));
+                $(gridId).delay(index * 100).removeClass(GetRoverImage(movementHistoryData[index].Orientation));
+                $(gridId).delay(index * 100).addClass('footprint');
             });
 
 
@@ -114,7 +104,7 @@
 
 
             $("#commands").delay(index * 1000).append(xCoordinate + ' ' + yCoordinate + ' ' + orientation + "<br/>").animate(
-                        { opacity: '0.8' },
+                        { opacity: '0.6' },
                         { queue: true, duration: 1000, specialEasing: { top: 'easeOutBack' }
                         });
 
@@ -123,6 +113,11 @@
 
 
         });
+    });
+
+    $(document).ready(function () {
+        $("#1-2").addClass('roverAnimateWest');
+        $("#0-2").addClass('roverAnimateWest');
     });
 
 

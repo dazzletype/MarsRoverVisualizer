@@ -105,11 +105,38 @@ namespace MarsRoverTests
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void CommandProcessorShouldHandleMissingLines()
+        public void CommandProcessorShouldHandleMissingBoundaryInfo()
         {
-            const string invalidInput = @"5 5 5
-                                          1 2 N";
-            inputParser.ReadInput(invalidInput);
+            const string invalidInput = @"1 2 N
+                                          LMLMLMLMM";
+            try
+            {
+                inputParser.ReadInput(invalidInput);
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Grid boundary not defined (should be first line in input)", ex.Message);
+                throw;
+            }
+        }
+
+
+
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void CommandProcessorShouldHandleNoInstructionSet()
+        {
+            const string invalidInput = @"5 5
+                                          LMLMLMLMM";
+            try
+            {
+                inputParser.ReadInput(invalidInput);
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("No complete instructions exist to process at least one rover", ex.Message);
+                throw;
+            }
         }
 
 

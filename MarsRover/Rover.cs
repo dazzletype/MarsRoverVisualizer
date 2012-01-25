@@ -5,7 +5,7 @@ namespace MarsRover
 {
     /// <summary>
     /// Sends commands to the Rover for moving and orienting positions.
-    /// Certain logic inspired by following implementation: http://george2giga.com/2011/02/18/mars-rover-exercise-in-c/
+    /// Certain logic inspired by the following implementation: http://george2giga.com/2011/02/18/mars-rover-exercise-in-c/
     /// </summary>
     public class Rover
     {
@@ -34,7 +34,7 @@ namespace MarsRover
         }
 
         /// <summary>
-        /// Processes string of commants to turn or move the Rover
+        /// Processes string of commands to turn or move the Rover
         /// </summary>
         public void Process()
         {
